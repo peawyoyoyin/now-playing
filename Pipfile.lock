@@ -1,0 +1,54 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "e609fd8220a2d9480bd82ac150e19628482c7dbb989c70f022221b3a6bdbca7e"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.5"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "pywin32": {
+            "hashes": [
+                "sha256:0df9b008caef10af0d674c483316c28dcf78391332d9d5d380fab667ebf2d7d1",
+                "sha256:249391eb924b8376826e6f84d143d1dcc0e400b238b511d5fbd3811f6ed9ad50",
+                "sha256:42f48567e36b787901ff3da20de5a134cd9880cc90832e2aad60951f058699f0",
+                "sha256:9eff897796c9d76a213134257a01b6f8a122c55e0772847fba313a8091f3ec44",
+                "sha256:c7ea0deabcc324e5b74084b5452003109c592d1aedbe9e9289ed55b26d9b0c7f",
+                "sha256:da422d4067d98b49fbb19d851900a5fc38c61eab0ee803574c27c42309173ebe",
+                "sha256:f0f0e7c82ee334dd6e888b9b5beb05fd8947355fa7a15644c810bb4ea0079ca6",
+                "sha256:fb3c85907918fd01a72ee146d323d220771dee151c0cfa5630c2f35797ffb116"
+            ],
+            "version": "==223"
+        },
+        "win32core": {
+            "hashes": [
+                "sha256:57ebeea7ba14117713ddca3db6bdca57703b81792c5c7f743f35b9313461532a",
+                "sha256:88e293e959dc5c50af3a9053cc7ac35273936080752316d4231b345cbc3c1b54",
+                "sha256:92fafd29427a9f1cacba2017f2a24ff31cf09c2e57ac6990703248ab4bb460d1",
+                "sha256:934ab3759403909327c8c8c85d3cee15da67282311f328591d74a2f25260b0f6",
+                "sha256:d2132324bd38704f040fbd9e23bc1ecb0f4bcb51354e9f2a93135bdc336d667d",
+                "sha256:face47b84e63fd9e9d8457d5917ca83b3d1ceaf07503ab3ca9ef426a2ee119f9"
+            ],
+            "version": "==221.36"
+        },
+        "win32gui": {
+            "hashes": [
+                "sha256:1578249c3bffca9f606749e99f0526c4b976f05727640e2e894d446f23d31ccb",
+                "sha256:286553c910cfbe99826260863b18d9633836e0399320a58d52f844c749307bdf",
+                "sha256:ec864ef3dbcac00410268f80e39df110e41518afc8810cad00125be114ea1941",
+                "sha256:f1ebf9c96f3726af207fd12882a7625974c22988ae08a29c34c693e23eb8a7c6"
+            ],
+            "version": "==221.6"
+        }
+    },
+    "develop": {}
+}
