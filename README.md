@@ -1,5 +1,6 @@
 # now-playing
-[screenshot](screenshot.png)
+![screenshot](https://github.com/peawyoyoyin/now-playing/blob/master/screenshot.png)
+
 Currently supporting only windows
 
 ## Install dependencies
