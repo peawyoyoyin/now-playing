@@ -1,4 +1,5 @@
 # now-playing
+[screenshot](screenshot.png)
 Currently supporting only windows
 
 ## Install dependencies
