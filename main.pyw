@@ -3,6 +3,8 @@ import win32gui
 import win32con
 import re
 
+UPDATE_INTERVAL = 5000
+
 class App():
     def __init__(self):
         self.root = tkinter.Tk('test')
@@ -44,7 +46,7 @@ class App():
 
         self.label.config(text=wintext)
         self.root.lift()
-        self.root.after(5000, self.update_label)
+        self.root.after(UPDATE_INTERVAL, self.update_label)
 
     def translate_window_text(self, text):
         text = text.rsplit('-', 1)[0]
