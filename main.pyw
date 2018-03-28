@@ -32,7 +32,8 @@ class App():
         self.frame = tkinter.Frame(self.root)
         self.frame.pack()
 
-        self.init_label()
+        self.label = self.init_label()
+        self.label.pack(side=tkinter.LEFT)
 
         self.control_panel = AppControlPanel(self.frame, on_close=lambda e: self.root.destroy())
         self.control_panel.pack(side=tkinter.RIGHT)
@@ -40,13 +41,11 @@ class App():
         tkinter.mainloop()
     
     def init_label(self):
-        if self.frame is None:
-            self.init_frame()
-        self.label = tkinter.Label(self.frame)
-        self.label.config(text='select window to track')
-        self.label.bind('<Button-1>', self.find_window)
-        self.label.bind('<B1-Motion>', self.on_drag)
-        self.label.pack(side=tkinter.LEFT)
+        label = tkinter.Label(self.frame)
+        label.config(text='select window to track')
+        label.bind('<Button-1>', self.find_window)
+        label.bind('<B1-Motion>', self.on_drag)
+        return label
 
     def on_drag(self, event):
         self.root.geometry('+0+{}'.format(event.y_root))
