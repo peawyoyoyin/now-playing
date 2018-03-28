@@ -47,10 +47,24 @@ class App():
 
         self.control_panel = AppControlPanel(self.frame)
         self.control_panel.set_on_close(lambda e: self.root.destroy())
+        self.control_panel.set_on_minimize(self.on_minimize)
         self.control_panel.pack(side=tkinter.RIGHT)
-        
+
+        self.minimized = False
+        self._label_text = 'select window to track'
+
         tkinter.mainloop()
     
+    @property
+    def label_text(self):
+        return self._label_text
+    
+    @label_text.setter
+    def label_text(self, label_text):
+        self._label_text = label_text
+        if not self.minimized:
+            self.label.config(text=label_text)
+
     def init_label(self):
         label = tkinter.Label(self.frame)
         label.config(text='select window to track')
@@ -60,12 +74,19 @@ class App():
 
     def on_drag(self, event):
         self.root.geometry('+0+{}'.format(event.y_root))
-    
+
+    def on_minimize(self, event):
+        self.minimized = not self.minimized
+        if self.minimized:
+            self.label.config(text='...')
+        else:
+            self.label.config(text=self.label_text)
+
     def update_label(self):
         wintext = win32gui.GetWindowText(self.window)
         wintext = self.translate_window_text(wintext)
 
-        self.label.config(text=wintext)
+        self.label_text = wintext
         self.root.lift()
         self.update_loop = self.root.after(UPDATE_INTERVAL, self.update_label)
 
