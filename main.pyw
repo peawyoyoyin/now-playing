@@ -26,7 +26,7 @@ class AppControlPanel(tkinter.Frame):
         minimize_label = tkinter.Label(self)
         minimize_label.config(text='-')
         if on_minimize is not None:
-            minimize_label,bind('<Button-1>', on_minimize)
+            minimize_label.bind('<Button-1>', on_minimize)
         return minimize_label
 
     def set_on_close(self, on_close):
