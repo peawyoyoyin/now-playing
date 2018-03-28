@@ -5,21 +5,40 @@ import re
 
 UPDATE_INTERVAL = 5000
 
+class AppControlPanel(tkinter.Frame):
+    def __init__(self, master, on_close=None):
+        super(AppControlPanel, self).__init__(master)
+        self.close_label = self.init_close_label(on_close)
+        self.close_label.pack(side=tkinter.LEFT)
+    
+    def init_close_label(self, on_close=None):
+        close_label = tkinter.Label(self)
+        close_label.config(text='x')
+        if on_close is not None:
+            close_label.bind('<Button-1>', on_close)
+        return close_label
+
+    def set_on_close(self, on_close):
+        self.close_label.bind('<Button-1>', on_close)
+
+
 class App():
     def __init__(self):
         self.root = tkinter.Tk('now playing')
         self.root.call('wm', 'attributes', '.', '-topmost', '1')
         self.root.overrideredirect(True)
-        self.init_frame()
-        self.init_label()
-        self.init_close_label()
         self.root.geometry('+0+0')
-        tkinter.mainloop()
-    
-    def init_frame(self):
+
         self.frame = tkinter.Frame(self.root)
         self.frame.pack()
 
+        self.init_label()
+
+        self.control_panel = AppControlPanel(self.frame, on_close=lambda e: self.root.destroy())
+        self.control_panel.pack(side=tkinter.RIGHT)
+        
+        tkinter.mainloop()
+    
     def init_label(self):
         if self.frame is None:
             self.init_frame()
@@ -32,14 +51,6 @@ class App():
     def on_drag(self, event):
         self.root.geometry('+0+{}'.format(event.y_root))
     
-    def init_close_label(self):
-        if self.frame is None:
-            self.init_frame()
-        self.close_label = tkinter.Label(self.frame)
-        self.close_label.config(text='x')
-        self.close_label.bind('<Button-1>', lambda e: self.root.destroy())
-        self.close_label.pack(side=tkinter.RIGHT)
-
     def update_label(self):
         wintext = win32gui.GetWindowText(self.window)
         wintext = self.translate_window_text(wintext)
