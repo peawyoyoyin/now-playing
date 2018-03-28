@@ -76,11 +76,12 @@ class App():
         self.root.geometry('+0+{}'.format(event.y_root))
 
     def on_minimize(self, event):
-        self.minimized = not self.minimized
-        if self.minimized:
-            self.label.config(text='...')
-        else:
-            self.label.config(text=self.label_text)
+        if self.window is not None:
+            self.minimized = not self.minimized
+            if self.minimized:
+                self.label.config(text='...')
+            else:
+                self.label.config(text=self.label_text)
 
     def update_label(self):
         wintext = win32gui.GetWindowText(self.window)
