@@ -6,10 +6,14 @@ import re
 UPDATE_INTERVAL = 5000
 
 class AppControlPanel(tkinter.Frame):
-    def __init__(self, master, on_close=None):
+    def __init__(self, master, on_close=None, on_minimize=None):
         super(AppControlPanel, self).__init__(master)
+
+        self.minimize_label = self.init_minimize_label(on_minimize)
+        self.minimize_label.pack(side=tkinter.LEFT)
+
         self.close_label = self.init_close_label(on_close)
-        self.close_label.pack(side=tkinter.LEFT)
+        self.close_label.pack(side=tkinter.RIGHT)
     
     def init_close_label(self, on_close=None):
         close_label = tkinter.Label(self)
@@ -18,8 +22,18 @@ class AppControlPanel(tkinter.Frame):
             close_label.bind('<Button-1>', on_close)
         return close_label
 
+    def init_minimize_label(self, on_minimize=None):
+        minimize_label = tkinter.Label(self)
+        minimize_label.config(text='-')
+        if on_minimize is not None:
+            minimize_label,bind('<Button-1>', on_minimize)
+        return minimize_label
+
     def set_on_close(self, on_close):
         self.close_label.bind('<Button-1>', on_close)
+
+    def set_on_minimize(self, on_minimize):
+        self.minimize_label.bind('<Button-1>', on_minimize)
 
 
 class App():
