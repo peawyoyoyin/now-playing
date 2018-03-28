@@ -115,7 +115,9 @@ class App():
             self.window = None
             self.root.after_cancel(self.update_loop)
             self.label.destroy()
-            self.init_label()
+            self.label = self.init_label()
+            self.label.pack(side= tkinter.LEFT)
+            self.minimized = False
 
 
 if __name__ == '__main__':
