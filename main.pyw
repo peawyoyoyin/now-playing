@@ -7,7 +7,7 @@ UPDATE_INTERVAL = 5000
 
 class App():
     def __init__(self):
-        self.root = tkinter.Tk('test')
+        self.root = tkinter.Tk('now playing')
         self.root.call('wm', 'attributes', '.', '-topmost', '1')
         self.root.overrideredirect(True)
         self.init_frame()
@@ -46,7 +46,7 @@ class App():
 
         self.label.config(text=wintext)
         self.root.lift()
-        self.root.after(UPDATE_INTERVAL, self.update_label)
+        self.update_loop = self.root.after(UPDATE_INTERVAL, self.update_label)
 
     def translate_window_text(self, text):
         text = text.rsplit('-', 1)[0]
@@ -65,8 +65,16 @@ class App():
             next_window = win32gui.GetWindow(next_window, 2)
         self.window = next_window
         self.label.unbind('<Button-1>')
+        self.label.bind('<Button-3>', self.untrack_window)
         self.update_label()
-        
+
+    def untrack_window(self, event):
+        if self.window is not None:
+            self.window = None
+            self.root.after_cancel(self.update_loop)
+            self.label.destroy()
+            self.init_label()
+
 
 if __name__ == '__main__':
     App()
